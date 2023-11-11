@@ -57,8 +57,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1=' [\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h \[\e[01;34m\]\W\[\e[00m\]]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # PS1=' [\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h \[\e[01;34m\]\W\[\e[00m\]]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -113,8 +113,25 @@ if ! shopt -oq posix; then
   fi
 fi
 
-## my settings
+#------------------------------------------------
+#                  my settings
+#------------------------------------------------
+PS1=' [\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h \[\e[01;34m\]\W\[\e[00m\]]\$ '
+
 alias apts='apt-cache search --names-only'
 alias aptn='apt-cache pkgnames'
-alias tk='echo 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'
-alias gtex="gnome-text-editor &"
+
+tk () {
+
+    key='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'
+    
+    if [ -n "$1" ]
+    then
+        sed -i "/key=/{
+            s/ghp_[A-Za-z0-9]*/$1/
+        }" "$HOME/.bashrc"
+        
+        # echo -n "$1" | xsel -b
+    fi
+    echo -n "$key" | xsel -b
+}

@@ -121,5 +121,10 @@
         "key": "ctrl+[BracketLeft]",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-workbench.action.terminal.focusFind",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
     }
 ]

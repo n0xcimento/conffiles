@@ -11,12 +11,17 @@ RUN apt update && apt upgrade -y && \
     sudo \
     git \
     vim \
+    bash-completion \
     && apt clean
 
 
 # gerenciamento de usuário #
 # cria um usuário com shell bash e diretório home
 RUN useradd --shell /bin/bash -m $USERNAME -p $(openssl passwd -1 $USERNAME)
+
+
+# ativa o autocomplete do terminal
+RUN source /etc/bash_completion
 
 
 # adiciona o $USERNAME ao grupo sudo
